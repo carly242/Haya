@@ -1,0 +1,68 @@
+<!-- templates/reservations_list.html -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservations</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Liste des Réservations</h2>
+        <a href="{% url 'home' %}" class="btn btn-primary">Retour à l'accueil</a>
+        <table class="reservations-table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Numéro de téléphone</th>
+                    <th>Date</th>
+                    <th>Heure</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reservation in reservations %}
+                    <tr>
+                        <td>{{ reservation.name }}</td>
+                        <td>{{ reservation.phone }}</td>
+                        <td>{{ reservation.date }}</td>
+                        <td>{{ reservation.time }}</td>
+                        <td>
+                            <form action="{% url 'delete_reservation' reservation.id %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5">Aucune réservation trouvée.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Pagination Controls -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if reservations.has_previous %}
+                    <a href="?page=1">&laquo; Première</a>
+                    <a href="?page={{ reservations.previous_page_number }}">Précédent</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ reservations.number }} sur {{ reservations.paginator.num_pages }}.
+                </span>
+
+                {% if reservations.has_next %}
+                    <a href="?page={{ reservations.next_page_number }}">Suivant</a>
+                    <a href="?page={{ reservations.paginator.num_pages }}">Dernière &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+</body>
+</html>
