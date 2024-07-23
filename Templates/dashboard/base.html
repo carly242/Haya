@@ -90,48 +90,48 @@
       </div>
     </div> 
 
-    <header id="header" class="site-header text-black" >
-      <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">
-            <img src="{% static 'images/Haya_Beauty_rpng.png' %}" class="logo" style="width: 320px;">
-          </a>
-          <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
-            <svg class="navbar-icon" width="50" height="50">
-              <use xlink:href="#navbar-icon"></use>
-            </svg>
-          </button>
-          <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
-            <div class="offcanvas-header px-4 pb-0">
-              <a class="navbar-brand" href="index.html">
-                <img src="{% static 'images/Haya_Beauty_rpng.png' %}" class="logo">
-              </a>
-              <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
-            </div>
-            <div class="offcanvas-body">
-              <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
-                <li class="nav-item dropdown">
-                  <a class="nav-link me-4 active" href="#billboard" id="dropdownPages">Accueil</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link me-4" href="#about-us">A Propos</a>
-                </li>
-                <li class="nav-item dropdown me-4">
-                  <a class="nav-link " href="#collections" id="dropdownPages">Prstations</a>
-                  
-                </li>
-                <li class="nav-item dropdown me-4">
-                  <a class="nav-link " href="#" id="dropdownPages" data-bs-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">Blog</a>
-
-                </li>
-              </ul>
-            </div>
+    <nav class="navbar navbar-dark bg-pink fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Haya Beauty</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Haya Beauty</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex mt-3" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-success" type="submit">Search</button>
+            </form>
           </div>
         </div>
-      </nav>    
-    </header>
-
+      </div>
+    </nav>
+    
   
 
     
@@ -145,7 +145,6 @@
     <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/plugins.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
-
 
     {% block content %}{% endblock content %}
   </body>

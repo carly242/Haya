@@ -3,17 +3,82 @@
 {% load static %}
 {% block content %}
 
+<style>
+  .mosaic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
+}
 
-<section id="billboard" class="overflow-hidden" style="background-color: rgb(238, 154, 168);">
+.mosaic-item {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1 / 1; /* Carré */
+}
+
+.mosaic-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mosaic-item .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mosaic-item:hover .overlay {
+    opacity: 1;
+}
+
+.mosaic-item h3, .mosaic-item p, .mosaic-item a {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.mosaic-item a {
+    color: #fff;
+    text-decoration: none;
+    background: #000;
+    padding: 5px 10px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.mosaic-item a:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* Assurez-vous que la grille s'affiche correctement sur toutes les tailles d'écran */
+@media (max-width: 767px) {
+    .mosaic-grid {
+        grid-template-columns: 1fr; /* Une seule colonne sur les petits écrans */
+    }
+}
+
+
+
+</style>
+
+
+<section id="billboard" class="overflow-hidden" style="background-color: rgb(232, 145, 206);">
     <div class="swiper main-swiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-12">
-                <div class="banner-item" style="background-image: url({% static 'images/bmage.jpg' %}); background-repeat: no-repeat; background-position: right; height: 682px;">
+                <div class="banner-item" style="background-image: url({% static 'images/Haya_Beauty.jpg' %}); background-repeat: no-repeat; background-position: right; height: 682px;">
                   <div class="banner-content padding-large">
-                    <h2 class="display-1 text-uppercase text-dark pb-2">Haya Beauty</h2>
+                    <h2 class="display-1 text-uppercase text-dark pb-2" style="color: #f9f9f9;">Haya Beauty</h2>
                     <p>Bienvenue chez Haya Beauty, votre destination de confiance pour une expérience de beauté exceptionnelle. Nous offrons des services de coiffure, de soins de la peau et de bien-être dans un cadre élégant et relaxant. Laissez notre équipe de professionnels expérimentés sublimer votre beauté naturelle avec des soins personnalisés adaptés à vos besoins.</p>                      
                   </div>
                 </div>
@@ -41,10 +106,15 @@
           <div class="detail p-5">
             <div class="display-header">
               <h2 class="display-2 text-uppercase text-dark pb-2">Notre Salon</h2>
-              <p class="pb-3">Haya Beauty est un salon de coiffure pour femme qui prose divers servcies outre la coiffure. Haya Beauty c'est une équipe de professionnel devouée pour la satisfaction du client</p>
-              <p>Chez Haya Beauty nous n'en ressortirez pas la meme !!!. </p>
-              
-            
+              <p class="pb-3">Haya Beauty est un havre de pain dédidé à votre beauté et à votre bien-etre. L'institut vous propose une gamme complète de soins et de presattions:
+                <ul>
+                  <li>Onglerie</li>
+                  <li>Beauté des mains et des pieds</li>
+                  <li>Maquillage</li>
+                  <li>Coiffure</li>
+                </ul>
+              </p>
+              <p>N'hésitez plus et prenez <a href="{% url 'reservation_page' %}"> Rendez-Vous</a> </p>
             </div>
           </div>
         </div>
@@ -52,186 +122,89 @@
     </div>
   </section>
 
- 
-
-  <section id="testimonials" class="position-relative">
-    <div class="container">
-      <div class="row">
-        <div class="review-content position-relative">
-          <div class="swiper-icon swiper-arrow swiper-arrow-prev position-absolute d-flex align-items-center justify-content-center">
-            <svg class="icon-arrow" width="25" height="25">
-              <use xlink:href="#arrow-left" />
-            </svg>
-          </div>
-          <div class="swiper testimonial-swiper">
-            <div class="quotation text-center">
-              <svg class="quote">
-                <use xlink:href="#quote" />
-              </svg>
-            </div>
-            <div class="swiper-wrapper">
-              <div class="swiper-slide text-center d-flex justify-content-center">
-                <div class="review-item col-md-10">
-                  <i class="icon icon-review"></i>
-                  <blockquote class="fs-4">“Dans le reflet d'un miroir, une histoire se dessine,
-                    Un éclat de lumière, une grâce divine.
-                    Chaque mèche de cheveux, chaque sourire délicat,
-                    Révèle une beauté unique qui touche en plein cœur.”</blockquote>
-                  <div class="author-detail">
-                    <div class="name text-primary text-uppercase pt-2">Mym</div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide text-center d-flex justify-content-center">
-                <div class="review-item col-md-10">
-                  <i class="icon icon-review"></i>
-                  <blockquote class="fs-4">“La femme, étoile de l'univers, lumière dans la nuit,
-                    Sa beauté rayonne, douce comme un fruit.
-                    Un charme envoûtant, un éclat éblouissant,
-                    Elle est une muse, une source d'inspiration.
-                    Chez Haya Beauty, nous chérissons cette splendeur,
-                    Avec amour et soin, nous honorons cette grandeur.
-                    Pour que chaque femme, à travers nos mains,
-                    Puisse révéler sa beauté, comme un trésor ancien.”</blockquote>
-                  <div class="author-detail">
-                    <div class="name text-primary text-uppercase pt-2">Hatone </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-icon swiper-arrow swiper-arrow-next position-absolute d-flex align-items-center justify-content-center">
-            <svg class="icon-arrow" width="25" height="25">
-              <use xlink:href="#arrow-right" />
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>      
-    <div class="swiper-pagination text-center position-absolute"></div>
-  </section>
-
-  <section id="collections" class="position-relative padding-large">
+<section id="collections" class="position-relative padding-large">
     <div class="container-fluid">
-      <div class="row">
-        <div class="swiper collection-swiper">
-          <h2 class="display-2 text-uppercase text-dark pb-2">Nos Prestations</h2>
-
-          <div class="swiper-wrapper">
-            <div class="swiper-slide overflow-hidden">
-              <div class="product-card">
-                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                  <h3 class="card-title text-uppercase">
-                    <a href="shop.html">Coiffures</a>
-                  </h3>
-                </div>
-                <div class="image-overlay position-relative">
-                  <div class="product-image">
-                    <img src="{% static 'images/Ba_coiffures.jpg' %}" alt="product-item" class="product-image img-fluid" style="height: 477px;">
-                    <div class="text-box box-slide position-absolute">
-                      <div class="text-content p-5 bg-light">
+        <div class="row">
+            <h2 class="display-2 text-uppercase text-dark pb-2">Nos Prestations</h2>
+            <div class="mosaic-grid">
+                <div class="mosaic-item">
+                    <img src="{% static 'images/Ba_coiffures.jpg' %}" alt="Coiffures">
+                    <div class="overlay">
                         <h3>A propos de la coiffure</h3>
-                        <p>Vnez vous faire belle chez Haya Beauty  </p>
-                        <ul>
-
-                        </ul>
+                        <p>Venez vous faire belle chez Haya Beauty</p>
                         <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
-                      </div>
                     </div>
-                  </div>
-                </div>                  
-              </div>
-            </div>
-            <div class="swiper-slide overflow-hidden">
-              <div class="product-card">
-                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                  <h3 class="card-title text-uppercase">
-                    <a href="shop.html">Maquillage</a>
-                  </h3>
                 </div>
-                <div class="image-overlay position-relative">
-                  <div class="product-image">
-                    <img src="{% static 'images/maquillage.jpg' %}" alt="product-item" class="product-image img-fluid" style="height: 477px;">
-
-                    <div class="text-box box-slide position-absolute">
-                      <div class="text-content p-5 bg-light">
+                <div class="mosaic-item">
+                    <img src="{% static 'images/maquillage.jpg' %}" alt="Maquillage">
+                    <div class="overlay">
                         <h3>A propos du maquillage</h3>
-                        <p>Osez rever et nous le réaliserons, venez béneficier d'un maquillage professionnel et attractif pour vous embellir</p>
-                        <ul>
-
-                        </ul>
+                        <p>Osez rêver et nous le réaliserons, venez bénéficier d'un maquillage professionnel et attractif pour vous embellir</p>
                         <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
-                      </div>
                     </div>
-                  </div>
-                <!-- product-image -->
-                </div>                  
-              </div>
-            </div>
-            <div class="swiper-slide overflow-hidden">
-              <div class="product-card">
-                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                  <h3 class="card-title text-uppercase">
-                    <a href="shop.html">Manicure</a>
-                  </h3>
                 </div>
-                <div class="image-overlay position-relative">
-                  <div class="product-image">
-                    <img src="{% static 'images/doight.jpg' %}" alt="product-item" class="product-image img-fluid" style="height: 477px;">
-
-                    <div class="text-box box-slide position-absolute">
-                      <div class="text-content p-5 bg-light">
+                <div class="mosaic-item">
+                    <img src="{% static 'images/Manicure_h.jpeg' %}" alt="Manicure">
+                    <div class="overlay">
                         <h3>A propos de la manicure</h3>
-                        <p>Découvrez la délicatesse de nso experts qui peuvent faire des miracle</p>
-                        <ul>
-
-                        </ul>
+                        <p>Découvrez la délicatesse de nos experts qui peuvent faire des miracles</p>
                         <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
-                      </div>
                     </div>
-                  </div>
-                <!-- product-image -->
-                </div>                  
-              </div>
-            </div>
-            <div class="swiper-slide overflow-hidden">
-              <div class="product-card">
-                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                  <h3 class="card-title text-uppercase">
-                    <a href="shop.html">Pédicure</a>
-                  </h3>
                 </div>
-                <div class="image-overlay position-relative">
-                  <div class="product-image">
-                    <img src="{% static 'images/pédicure.jpg' %}" alt="product-item" class="product-image img-fluid" style="height: 477px;">
-
-                    <div class="text-box box-slide position-absolute">
-                      <div class="text-content p-5 bg-light">
-                        <h3>A propos de la Pédicure</h3>
+                <div class="mosaic-item">
+                    <img src="{% static 'images/Pédicure_H.jpeg' %}" alt="Pédicure">
+                    <div class="overlay">
+                        <h3>A propos de la pédicure</h3>
                         <p>Venez rendre vos pieds brillants et attractifs chez Haya Beauty avec nos experts</p>
-                        <ul>
-
-                        </ul>
                         <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
-                      </div>
                     </div>
+                </div>
+                <div class="mosaic-item">
+                  <img src="{% static 'images/Pédicure_H.jpeg' %}" alt="Pédicure">
+                  <div class="overlay">
+                      <h3>A propos de la pédicure</h3>
+                      <p>Venez rendre vos pieds brillants et attractifs chez Haya Beauty avec nos experts</p>
+                      <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
                   </div>
-                </div>                  
+                </div>
+                <div class="mosaic-item">
+                  <img src="{% static 'images/maquillage.jpg' %}" alt="Maquillage">
+                  <div class="overlay">
+                      <h3>A propos du maquillage</h3>
+                      <p>Osez rêver et nous le réaliserons, venez bénéficier d'un maquillage professionnel et attractif pour vous embellir</p>
+                      <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
+                  </div>
               </div>
+               <div class="mosaic-item">
+                <img src="{% static 'images/Manicure_h.jpeg' %}" alt="Manicure">
+                <div class="overlay">
+                    <h3>A propos de la manicure</h3>
+                    <p>Découvrez la délicatesse de nos experts qui peuvent faire des miracles</p>
+                    <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
+                </div>
+              </div>
+              <div class="mosaic-item">
+                <img src="{% static 'images/maquillage.jpg' %}" alt="Maquillage">
+                <div class="overlay">
+                    <h3>A propos du maquillage</h3>
+                    <p>Osez rêver et nous le réaliserons, venez bénéficier d'un maquillage professionnel et attractif pour vous embellir</p>
+                    <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
+                </div>
             </div>
-          </div>
+            
+                <!-- Ajouter plus de mosaïques ici -->
+            </div>
         </div>
-      </div>
     </div>
-    <div class="swiper-pagination position-absolute text-center"></div>
-  </section>
+</section>
+
+
 
   <section id="featured-products" class="product-store position-relative padding-large">
     <div class="container-fluid">
       <div class="row">
         <div class="display-header pb-3 d-flex justify-content-between flex-wrap col-md-12">
           <h2 class="display-2 text-dark text-uppercase">Coiffures Phares</h2> 
-          <a href="shop.html" class="btn btn-medium btn-arrow btn-normal position-relative">
             <svg class="arrow-right position-absolute" width="18" height="20">
               <use xlink:href="#arrow-right"></use>
             </svg>
