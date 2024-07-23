@@ -23,6 +23,13 @@
     <!-- script
     ================================================== -->
     <script src="{% static 'js/modernizr.js' %}"></script>
+    <style>
+      @media (max-width: 576px) {
+        .offcanvas-start {
+          width: 75% !important; /* Adjust the width as needed */
+        }
+      }
+    </style>
   </head>
   <body class="bg-body" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0" style="background-color: rgb(54, 21, 6);">
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -104,29 +111,21 @@
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="#">Accueil</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="dropdown-item" href="#about-us">A propos</a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
+              <li class="nav-item">
+                <a class="dropdown-item" href="#collections">Prestations</a>
+              </li>
+              <li class="nav-item">
+                <a class="dropdown-item" href="#featured-products">Coiffures</a>
+              </li>
+              <li class="nav-item">
+                <a class="dropdown-item" href="#contact">Contact</a>
               </li>
             </ul>
-            <form class="d-flex mt-3" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-success" type="submit">Search</button>
-            </form>
           </div>
         </div>
       </div>
@@ -135,6 +134,7 @@
   
 
     
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
     
 
