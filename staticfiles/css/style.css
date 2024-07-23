@@ -290,7 +290,7 @@ h5 {
 ------------------------------------------------------------- */
 .btn.btn-normal {
   border: none;
-  color: var(--bs-dark);
+  color: rgb(233, 167, 167);
   text-decoration: underline;
 }
 
