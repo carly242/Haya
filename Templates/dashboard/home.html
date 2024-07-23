@@ -6,14 +6,14 @@
 <style>
   .mosaic-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjusted min width for smaller screens */
     gap: 10px;
 }
 
 .mosaic-item {
     position: relative;
     overflow: hidden;
-    aspect-ratio: 1 / 1; /* Carré */
+    aspect-ratio: 1 / 1; /* Ensure square aspect ratio */
 }
 
 .mosaic-item img {
@@ -57,12 +57,13 @@
     color: #000;
 }
 
-/* Assurez-vous que la grille s'affiche correctement sur toutes les tailles d'écran */
-@media (max-width: 767px) {
+/* Ensure proper grid layout on smaller devices */
+@media (max-width: 576px) {
     .mosaic-grid {
-        grid-template-columns: 1fr; /* Une seule colonne sur les petits écrans */
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 }
+
 
 
 
@@ -122,7 +123,7 @@
     </div>
   </section>
 
-<section id="collections" class="position-relative padding-large">
+  <section id="collections" class="position-relative padding-large">
     <div class="container-fluid">
         <div class="row">
             <h2 class="display-2 text-uppercase text-dark pb-2">Nos Prestations</h2>
@@ -159,44 +160,12 @@
                         <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
                     </div>
                 </div>
-                <div class="mosaic-item">
-                  <img src="{% static 'images/Pédicure_H.jpeg' %}" alt="Pédicure">
-                  <div class="overlay">
-                      <h3>A propos de la pédicure</h3>
-                      <p>Venez rendre vos pieds brillants et attractifs chez Haya Beauty avec nos experts</p>
-                      <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
-                  </div>
-                </div>
-                <div class="mosaic-item">
-                  <img src="{% static 'images/maquillage.jpg' %}" alt="Maquillage">
-                  <div class="overlay">
-                      <h3>A propos du maquillage</h3>
-                      <p>Osez rêver et nous le réaliserons, venez bénéficier d'un maquillage professionnel et attractif pour vous embellir</p>
-                      <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
-                  </div>
-              </div>
-               <div class="mosaic-item">
-                <img src="{% static 'images/Manicure_h.jpeg' %}" alt="Manicure">
-                <div class="overlay">
-                    <h3>A propos de la manicure</h3>
-                    <p>Découvrez la délicatesse de nos experts qui peuvent faire des miracles</p>
-                    <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
-                </div>
-              </div>
-              <div class="mosaic-item">
-                <img src="{% static 'images/maquillage.jpg' %}" alt="Maquillage">
-                <div class="overlay">
-                    <h3>A propos du maquillage</h3>
-                    <p>Osez rêver et nous le réaliserons, venez bénéficier d'un maquillage professionnel et attractif pour vous embellir</p>
-                    <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
-                </div>
-            </div>
-            
-                <!-- Ajouter plus de mosaïques ici -->
+                <!-- Additional items... -->
             </div>
         </div>
     </div>
 </section>
+
 
 
 
