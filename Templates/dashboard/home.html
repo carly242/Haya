@@ -4,6 +4,20 @@
 {% block content %}
 
 <style>
+
+
+  #billboard {
+    background-color: #fff; /* Arrière-plan blanc */
+}
+
+.text-dark {
+    color: #000 !important; /* Titres noirs */
+}
+
+ .text-white {
+    color: #fff !important; /* Texte blanc */
+}
+
   .mosaic-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjusted min width for smaller screens */
@@ -56,6 +70,11 @@
     background: #fff;
     color: #000;
 }
+.divider {
+  height: 10px; /* Épaisseur de la ligne */
+  background-color: #ffc0cb; /* Couleur de la ligne */
+  margin: 20px 0; /* Espace autour de la ligne */
+}
 
 /* Ensure proper grid layout on smaller devices */
 @media (max-width: 576px) {
@@ -70,32 +89,32 @@
 </style>
 
 
-<section id="billboard" class="overflow-hidden" style="background-color: rgb(232, 145, 206);">
-    <div class="swiper main-swiper">
+<section id="billboard" class="overflow-hidden" style="background-color: #171515;">
+  <div class="swiper main-swiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="banner-item" style="background-image: url({% static 'images/Haya_Beauty.jpg' %}); background-repeat: no-repeat; background-position: right; height: 682px;">
-                  <div class="banner-content padding-large">
-                    <h2 class="display-1 text-uppercase text-dark pb-2" style="color: #f9f9f9;">Haya Beauty</h2>
-                    <p>Bienvenue chez Haya Beauty, votre destination de confiance pour une expérience de beauté exceptionnelle. Nous offrons des services de coiffure, de soins de la peau et de bien-être dans un cadre élégant et relaxant. Laissez notre équipe de professionnels expérimentés sublimer votre beauté naturelle avec des soins personnalisés adaptés à vos besoins.</p>                      
+          <div class="swiper-slide">
+              <div class="container-fluid">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="banner-content padding-large">
+                              <h2 class="display-1 text-uppercase text-white pb-2">Haya Beauty</h2>
+                              <p class="text-white">Bienvenue chez Haya Beauty, votre destination de confiance pour une expérience de beauté exceptionnelle. Nous offrons des services de coiffure, de soins de la peau et de bien-être dans un cadre élégant et relaxant. Laissez notre équipe de professionnels expérimentés sublimer votre beauté naturelle avec des soins personnalisés adaptés à vos besoins.</p>
+                          </div>
+                      </div>
                   </div>
-                </div>
               </div>
-            </div>
           </div>
-        </div>
       </div>
-    </div>
-    <div class="swiper-pagination position-absolute"></div>
-  </section>
+  </div>
+  <div class="swiper-pagination position-absolute"></div>
+</section>
+
   
 
+<div class="divider"></div>
 
 
-  <section id="about-us">
+  <section id="about-us" style="background-color: #171515;">
     <div class="container-fluid">
       <div class="row align-items-center justify-content-between g-5">
         <div class="col-lg-6">
@@ -106,16 +125,16 @@
         <div class="col-lg-6">
           <div class="detail p-5">
             <div class="display-header">
-              <h2 class="display-2 text-uppercase text-dark pb-2">Notre Salon</h2>
-              <p class="pb-3">Haya Beauty est un havre de pain dédidé à votre beauté et à votre bien-etre. L'institut vous propose une gamme complète de soins et de presattions:
-                <ul>
+              <h2 class="display-2 text-uppercase text-dark pb-2 text-white">Notre Salon</h2>
+              <p class="pb-3 text-white">Haya Beauty est un havre de pain dédidé à votre beauté et à votre bien-etre. L'institut vous propose une gamme complète de soins et de presattions:
+                <ul class="text-white">
                   <li>Onglerie</li>
                   <li>Beauté des mains et des pieds</li>
                   <li>Maquillage</li>
                   <li>Coiffure</li>
                 </ul>
               </p>
-              <p>N'hésitez plus et prenez <a href="{% url 'reservation_page' %}"> Rendez-Vous</a> </p>
+              <p class="text-white">N'hésitez plus et prenez <a href="{% url 'reservation_page' %}" class="text-white"> Rendez-Vous</a> </p>
             </div>
           </div>
         </div>
@@ -123,41 +142,43 @@
     </div>
   </section>
 
-  <section id="collections" class="position-relative padding-large">
+  <div class="divider"></div>
+
+  <section id="collections" class="position-relative padding-large" style="background-color: #171515;">
     <div class="container-fluid">
         <div class="row">
-            <h2 class="display-2 text-uppercase text-dark pb-2">Nos Prestations</h2>
+            <h2 class="display-2 text-uppercase text-dark pb-2 text-white">Nos Prestations</h2>
             <div class="mosaic-grid">
                 <div class="mosaic-item">
                     <img src="{% static 'images/Ba_coiffures.jpg' %}" alt="Coiffures">
                     <div class="overlay">
-                        <h3>A propos de la coiffure</h3>
+                        <h3>Coiffure</h3>
                         <p>Venez vous faire belle chez Haya Beauty</p>
-                        <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
+                        <a href="{% url 'coiffure' %}" class="btn btn-normal mt-3">Voir Plus</a>
                     </div>
                 </div>
                 <div class="mosaic-item">
                     <img src="{% static 'images/maquillage.jpg' %}" alt="Maquillage">
                     <div class="overlay">
-                        <h3>A propos du maquillage</h3>
-                        <p>Osez rêver et nous le réaliserons, venez bénéficier d'un maquillage professionnel et attractif pour vous embellir</p>
-                        <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
+                        <h3>Maquillage</h3>
+                        <p>Venez bénéficier d'un maquillage professionnel et attractif pour vous embellir</p>
+                        <a href="{% url 'maquillage' %}" class="btn btn-normal mt-3">Voir Plus</a>
                     </div>
                 </div>
                 <div class="mosaic-item">
                     <img src="{% static 'images/Manicure.jpeg' %}" alt="Manicure">
                     <div class="overlay">
-                        <h3>A propos de la manicure</h3>
+                        <h3>Manicure</h3>
                         <p>Découvrez la délicatesse de nos experts qui peuvent faire des miracles</p>
-                        <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
+                        <a href="{% url 'manicure' %}" class="btn btn-normal mt-3">Voir Plus</a>
                     </div>
                 </div>
                 <div class="mosaic-item">
                     <img src="{% static 'images/Pédicure_H.jpeg' %}" alt="Pédicure">
                     <div class="overlay">
-                        <h3>A propos de la pédicure</h3>
+                        <h3>Pédicure</h3>
                         <p>Venez rendre vos pieds brillants et attractifs chez Haya Beauty avec nos experts</p>
-                        <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
+                        <a href="{% url 'pedicure' %}" class="btn btn-normal mt-3">Voir Plus</a>
                     </div>
                 </div>
                 <!-- Additional items... -->
@@ -166,134 +187,10 @@
     </div>
 </section>
 
-
-
-
-  <section id="featured-products" class="product-store position-relative padding-large">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="display-header pb-3 d-flex justify-content-between flex-wrap col-md-12">
-          <h2 class="display-2 text-dark text-uppercase">Coiffures Phares</h2> 
-            <svg class="arrow-right position-absolute" width="18" height="20">
-              <use xlink:href="#arrow-right"></use>
-            </svg>
-          </a>
-        </div>
-      </div>
-      <div class="row">
-        <div id="featured-swiper" class="product-swiper col-md-12">
-          <div class="swiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                  <div class="image-holder">
-                    <img src="{% static 'images/locks.jpg' %}" alt="product-item" class="product-image img-fluid" style="height: 480px;">
-                  </div>
-                  <div class="cart-concern">
-                    <h3 class="card-title text-uppercase pt-3 text-primary">
-                      <a href="single-product.html" class="text-primary">Les Locks </a>
-                    </h3>
-                    <div class="cart-info">
-                      <a class="pseudo-text-effect" href="{% url 'reservation_page' %}" data-after="Reserver"><span>Prix</span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                  <div class="image-holder">
-                    <img src="{% static 'images/mèche_oh.jpg' %}" alt="product-item" class="product-image img-fluid" style="height: 480px;">
-                  </div>
-                  <div class="cart-concern">
-                    <h3 class="card-title text-uppercase pt-3 text-primary">
-                      <a href="single-product.html" class="text-primary">Les mèches</a>
-                    </h3>
-                    <div class="cart-info">
-                      <a class="pseudo-text-effect" href="{% url 'reservation_page' %}" data-after="Reserver">
-                        <span>Prix</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                  <div class="image-holder">
-                    <img src="{% static 'images/meche.jpg' %}" alt="product-item" class="product-image img-fluid" style="height: 480px;">
-                  </div>
-                  <div class="cart-concern">
-                    <h3 class="card-title text-uppercase pt-3 text-primary">
-                      <a href="single-product.html" class="text-primary">Gros bébé</a>
-                    </h3>
-                    <div class="cart-info">
-                      <a class="pseudo-text-effect" href="{% url 'reservation_page' %}" data-after="Reserver">
-                        <span>Prix</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                  <div class="image-holder">
-                    <img src="{% static 'images/jolie_mèche.jpg' %}" alt="product-item" class="product-image img-fluid" style="height: 480px;">
-                  </div>
-                  <div class="cart-concern">
-                    <h3 class="card-title text-uppercase pt-3 text-primary">
-                      <a href="single-product.html" class="text-primary">Mèches Multicolors</a>
-                    </h3>
-                    <div class="cart-info">
-                      <a class="pseudo-text-effect" href="{% url 'reservation_page' %}" data-after="Reserver">
-                        <span>Prix</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                  <div class="image-holder">
-                    <img src="{% static 'images/gros_bb.jpg' %}" alt="product-item" class="product-image img-fluid" style="height: 480px;">
-                  </div>
-                  <div class="cart-concern">
-                    <h3 class="card-title text-uppercase pt-3 text-primary">
-                      <a href="single-product.html" class="text-primary">Nattes</a>
-                    </h3>
-                    <div class="cart-info">
-                      <a class="pseudo-text-effect" href="{% url 'reservation_page' %}" data-after="Reserver">
-                        <span>Prix</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                  <div class="image-holder">
-                    <img src="{% static 'images/natt.jpg' %}" alt="product-item" class="product-image img-fluid" style="height: 480px;">
-                  </div>
-                  <div class="cart-concern">
-                    <h3 class="card-title text-uppercase pt-3 text-primary">
-                      <a href="single-product.html" class="text-primary">Gros mèches</a>
-                    </h3>
-                    <div class="cart-info">
-                      <a class="pseudo-text-effect" href="{% url 'reservation_page' %}" data-after="Faire une reservation">
-                        <span>Prix</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-pagination text-center mt-5"></div>
-        </div>
-      </div>
-    </div>      
-  </section>
+<div class="divider"></div>
 
   
-  <section class="contact" id="contact">
+  <section class="contact" id="contact" style="background-color: #171515;">
     <div class="container">
       <div class="row">
         <!-- Google Map Section -->
@@ -392,7 +289,7 @@
         display: block;
         width: 100%;
         padding: 1em;
-        background-color: #0d0d0d;
+        background-color: #e84db7;
         color: #fff;
         border: none;
         border-radius: 5px;
@@ -404,6 +301,22 @@
         background-color: #787d62;
       }
       
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+    .content {
+        flex: 1;
+    }
+    .footer {
+        background-color: #f1f1f1;
+        padding: 20px;
+        text-align: center;
+    }
+
       
 </style>  
   
@@ -423,6 +336,10 @@
   }
 </script>
 
+
+<div class="footer">
+  &copy; 2024 All rights deserve by. Créé par @mym
+</div>
 
 
 {% endblock  %}

@@ -1,43 +1,22 @@
-<!-- templates/reservations_list.html -->
-
+<!-- templates/confirmed_reservations.html -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head style="background-color: rgb(54, 21, 6);">
-    <title>Page Administrateur</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="author" content="">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script src="{% static 'js/modernizr.js' %}"></script>
-    <style>
-        @media (max-width: 576px) {
-            .offcanvas-start {
-                width: 75% !important;
-            }
-        }
-    </style>
+    <title>Réservations Confirmées</title>
 </head>
-<body class="bg-body" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0" style="background-color: rgb(33, 31, 30);">
+<body>
     <style>
+        /* General Styles */
         body {
             font-family: Arial, sans-serif;
-            background-color: #343030;
+            background-color: #ded8d8;
             margin: 0;
             padding: 0;
         }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -45,12 +24,14 @@
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         h2 {
             text-align: center;
             color: #333;
             margin-bottom: 20px;
             background-color: #1399e7;
         }
+
         a.btn {
             display: inline-block;
             margin-bottom: 20px;
@@ -62,30 +43,39 @@
             border-radius: 5px;
             transition: background-color 0.3s;
         }
+
         a.btn:hover {
             background-color: #0056b3;
         }
+
+        /* Table Styles */
         .reservations-table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
         }
+
         .reservations-table th, .reservations-table td {
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
+
         .reservations-table th {
             background-color: #007bff;
             color: white;
             text-transform: uppercase;
         }
+
         .reservations-table tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+
         .reservations-table tr:hover {
             background-color: #f1f1f1;
         }
+
+        /* Button Styles */
         .btn {
             padding: 5px 10px;
             border: none;
@@ -93,31 +83,41 @@
             color: white;
             cursor: pointer;
         }
+
         .btn-primary {
             background-color: #007bff;
         }
+
         .btn-primary:hover {
             background-color: #0056b3;
         }
+
         .btn-danger {
             background-color: #dc3545;
         }
+
         .btn-danger:hover {
             background-color: #c82333;
         }
+
         .btn-success {
             background-color: #28a745;
         }
+
         .btn-success:hover {
             background-color: #218838;
         }
+
+        /* Pagination Styles */
         .pagination {
             text-align: center;
             margin-top: 20px;
         }
+
         .pagination .step-links {
             display: inline-block;
         }
+
         .pagination a {
             color: #007bff;
             text-decoration: none;
@@ -127,9 +127,11 @@
             border-radius: 5px;
             transition: background-color 0.3s;
         }
+
         .pagination a:hover {
             background-color: #f1f1f1;
         }
+
         .pagination .current {
             padding: 8px 16px;
             border: 1px solid #ddd;
@@ -139,8 +141,8 @@
         }
     </style>
     <div class="container">
-        <h2>Liste des Réservations</h2>
-        <a href="{% url 'home' %}" class="btn btn-primary">Accéder au site</a>
+        <h2>Liste des Réservations Confirmées</h2>
+        <a href="{% url 'home' %}" class="btn btn-primary">Retour à l'accueil</a>
         <table class="reservations-table">
             <thead>
                 <tr>
@@ -148,10 +150,6 @@
                     <th>Numéro de téléphone</th>
                     <th>Date</th>
                     <th>Heure</th>
-                    <th>Statut</th>
-                    <th>Supprimer</th>
-                    <th>Confirmer</th>
-                    <th>Annuler</th>
                 </tr>
             </thead>
             <tbody>
@@ -161,36 +159,27 @@
                         <td>{{ reservation.phone }}</td>
                         <td>{{ reservation.date }}</td>
                         <td>{{ reservation.time }}</td>
-                        <td>{{ reservation.get_status_display }}</td>
-                        <td>
-                            <form action="{% url 'delete_reservation' reservation.id %}" method="post" style="display:inline;">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-danger">Supprimer</button>
-                            </form>
-                        </td>
-                        <td>
-                            <a href="{% url 'update_status' reservation.id 'confirmed' %}" class="btn btn-success">Confirmer</a>
-                        </td>
-                        <td>
-                            <a href="{% url 'update_status' reservation.id 'cancelled' %}" class="btn btn-danger">Annuler</a>
-                        </td>
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="5">Aucune réservation trouvée.</td>
+                        <td colspan="4">Aucune réservation confirmée trouvée.</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
+
+        <!-- Pagination Controls -->
         <div class="pagination">
             <span class="step-links">
                 {% if reservations.has_previous %}
                     <a href="?page=1">&laquo; Première</a>
                     <a href="?page={{ reservations.previous_page_number }}">Précédent</a>
                 {% endif %}
+
                 <span class="current">
                     Page {{ reservations.number }} sur {{ reservations.paginator.num_pages }}.
                 </span>
+
                 {% if reservations.has_next %}
                     <a href="?page={{ reservations.next_page_number }}">Suivant</a>
                     <a href="?page={{ reservations.paginator.num_pages }}">Dernière &raquo;</a>
@@ -198,22 +187,5 @@
             </span>
         </div>
     </div>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/plugins.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
 </html>

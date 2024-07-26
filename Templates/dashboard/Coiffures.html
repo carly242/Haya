@@ -1,0 +1,296 @@
+{% extends "dashboard/base.html" %}
+
+{% load static %}
+{% block content %}
+
+<style>
+    .header-coiffures {
+        position: relative;
+        background: url('{% static "images/ba_coiffures.jpg" %}') no-repeat center center;
+        background-size: cover;
+        padding: 100px 0;
+    }
+    
+    .header-coiffures .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .header-coiffures h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(251, 249, 249, 0.908);
+    }
+    
+    .header-coiffures p {
+        font-size: 1.5rem;
+        margin-top: 10px;
+        text-shadow: 1px 1px 3px rgba(248, 246, 246, 0.9);
+    }
+    .contact {
+        padding: 4em 0;
+        background-color: #f6f5f2;
+      }
+      
+      .map-container {
+        margin-bottom: 2em;
+      }
+      
+      .contact-form-container {
+        background: #fff;
+        padding: 2em;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      
+      .contact-form-container h2 {
+        margin-bottom: 1.5em;
+      }
+      
+      .form-group {
+        margin-bottom: 1.5em;
+      }
+      
+      .form-control {
+        width: 100%;
+        padding: 0.75em;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background: #f9f9f9;
+        transition: all 0.3s;
+      }
+      
+      .form-control:focus {
+        border-color: #787d62;
+        background: #fff;
+      }
+      
+      .social-icons {
+        margin-top: 1.5em;
+        text-align: center;
+      }
+      
+      .social-icons a {
+        margin: 0 0.5em;
+        color: #787d62;
+        font-size: 1.5em;
+        transition: color 0.3s;
+      }
+      
+      .social-icons a:hover {
+        color: #0d0d0d;
+      }
+      .text-white {
+        color: #fff !important; /* Texte blanc */
+    }
+    
+      
+      .btn-full {
+        display: block;
+        width: 100%;
+        padding: 1em;
+        background-color: #0d0d0d;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        text-transform: uppercase;
+        transition: background-color 0.3s;
+      }
+      
+      .btn-full:hover {
+        background-color: #787d62;
+      }
+      
+    
+    @media (max-width: 768px) {
+        .header-coiffures h1 {
+            font-size: 2.5rem;
+        }
+        .header-coiffures p {
+            font-size: 1.2rem;
+        }
+    }
+    
+</style>
+
+
+
+<header class="header-coiffures position-relative text-center text-white" style="background-color: #171515;">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="display-3 text-uppercase text-white">Coiffures Phares</h1>
+                <p class="lead text-white">Découvrez nos coiffures les plus populaires et tendance</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="featured-products" class="product-store position-relative padding-large" style="background-color: #171515;">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="display-header pb-3 d-flex justify-content-between flex-wrap col-md-12">
+          <h2 class="display-2 text-dark text-uppercase"></h2> 
+            <svg class="arrow-right position-absolute" width="18" height="20">
+              <use xlink:href="#arrow-right"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div id="featured-swiper" class="product-swiper col-md-12">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
+                  <div class="image-holder">
+                    <img src="{% static 'images/locks.jpg' %}" alt="product-item" class="product-image img-fluid" style="height: 480px;">
+                  </div>
+                  <div class="cart-concern">
+                    <h3 class="card-title text-uppercase pt-3 text-primary">
+                      <a href="single-product.html" class="text-primary"></a>
+                    </h3>
+                    <div class="cart-info">
+                      <a class="pseudo-text-effect text-white" href="{% url 'reservation_page' %}" data-after="Reserver" >
+                        <span class="text-white">Prix</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
+                  <div class="image-holder">
+                    <img src="{% static 'images/mèche_oh.jpg' %}" alt="product-item" class="product-image img-fluid" style="height: 480px;">
+                  </div>
+                  <div class="cart-concern">
+                    <h3 class="card-title text-uppercase pt-3 text-primary">
+                      <a href="single-product.html" class="text-primary"></a>
+                    </h3>
+                    <div class="cart-info">
+                      <a class="pseudo-text-effect" href="{% url 'reservation_page' %}" data-after="Reserver">
+                        <span class="text-white">Prix</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
+                  <div class="image-holder">
+                    <img src="{% static 'images/meche.jpg' %}" alt="product-item" class="product-image img-fluid" style="height: 480px;">
+                  </div>
+                  <div class="cart-concern">
+                    <h3 class="card-title text-uppercase pt-3 text-primary">
+                      <a href="single-product.html" class="text-primary"></a>
+                    </h3>
+                    <div class="cart-info">
+                      <a class="pseudo-text-effect" href="{% url 'reservation_page' %}" data-after="Reserver">
+                        <span class="text-white">Prix</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
+                  <div class="image-holder">
+                    <img src="{% static 'images/jolie_mèche.jpg' %}" alt="product-item" class="product-image img-fluid" style="height: 480px;">
+                  </div>
+                  <div class="cart-concern">
+                    <h3 class="card-title text-uppercase pt-3 text-primary">
+                      <a href="single-product.html" class="text-primary"></a>
+                    </h3>
+                    <div class="cart-info">
+                      <a class="pseudo-text-effect" href="{% url 'reservation_page' %}" data-after="Reserver">
+                        <span class="text-white">Prix</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
+                  <div class="image-holder">
+                    <img src="{% static 'images/gros_bb.jpg' %}" alt="product-item" class="product-image img-fluid" style="height: 480px;">
+                  </div>
+                  <div class="cart-concern">
+                    <h3 class="card-title text-uppercase pt-3 text-primary">
+                      <a href="single-product.html" class="text-primary"></a>
+                    </h3>
+                    <div class="cart-info">
+                      <a class="pseudo-text-effect" href="{% url 'reservation_page' %}" data-after="Reserver">
+                        <span class="text-white">Prix</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
+                  <div class="image-holder">
+                    <img src="{% static 'images/natt.jpg' %}" alt="product-item" class="product-image img-fluid" style="height: 480px;">
+                  </div>
+                  <div class="cart-concern">
+                    <h3 class="card-title text-uppercase pt-3 text-primary">
+                      <a href="single-product.html" class="text-primary"></a>
+                    </h3>
+                    <div class="cart-info">
+                      <a class="pseudo-text-effect" href="{% url 'reservation_page' %}" data-after="Faire une reservation">
+                        <span class="text-white">Prix</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination text-center mt-5"></div>
+        </div>
+      </div>
+    </div>      
+  </section>
+
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="row">
+
+        <!-- Contact Form Section -->
+        <div class="col-lg-6">
+          <div class="contact-form-container">
+            <h2 class="display-4">Contactez-nous</h2>
+            <form id="contact-form">
+              <div class="form-group">
+                <input type="text" name="name" placeholder="Votre nom" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="email" name="email" placeholder="Votre email" class="form-control">
+              </div>
+              <div class="form-group">
+                <textarea name="message" placeholder="Votre message" class="form-control"></textarea>
+              </div>
+              <button type="submit" class="btn btn-full btn-black text-uppercase">Envoyer</button>
+            </form>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/ha.ya__beauty221?igsh=bHNwM2l3enN3M2Rt"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@ha.ya_beauty221?_t=8o9PQWJ3JNG&_r=1"><i class="fab fa-tiktok"></i></a>
+                <a href="https://wa.me/+221787534405"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+
+
+
+{% endblock %}

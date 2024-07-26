@@ -26,6 +26,8 @@
     ================================================== -->
     <script src="{% static 'js/modernizr.js' %}"></script>
     <style>
+      
+      
       @media (max-width: 576px) {
         .offcanvas-start {
           width: 75% !important; /* Adjust the width as needed */
@@ -33,7 +35,7 @@
       }
     </style>
   </head>
-  <body class="bg-body" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0" style="background-color: rgb(54, 21, 6);">
+  <body class="bg-body" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0" style="background-color: rgb(33, 31, 30);">
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
       <symbol id="search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
         <title>Search</title>
@@ -90,12 +92,7 @@
             <use xlink:href="#close"></use>
           </svg>
         </div>
-        <form id="search-form" class="text-center pt-3" action="" method="">
-          <input type="text" class="search-input fs-5 p-4 bg-transparent" placeholder="Search...">
-          <svg class="search" width="22" height="22">
-            <use xlink:href="#search"></use>
-          </svg>
-        </form>
+        
       </div>
     </div> 
 
@@ -110,7 +107,7 @@
             <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Haya Beauty</h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
-          <div class="offcanvas-body">
+          <div class="offcanvas-body" style="background-color: #ffc0cb;">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Accueil</a>
@@ -126,6 +123,9 @@
               </li>
               <li class="nav-item">
                 <a class="dropdown-item" href="#contact">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="dropdown-item" href="{% url "reservation_page" %}">Reserver</a>
               </li>
             </ul>
           </div>
@@ -159,7 +159,7 @@
         });
       });
     </script>
-    
+
 
     {% block content %}
     {% endblock %}

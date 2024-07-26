@@ -15,24 +15,28 @@ def reservation_page(request):
 @csrf_exempt
 def reserve(request):
     if request.method == 'POST':
-        name = request.POST['name']
-        phone = request.POST['phone']
-        time = request.POST['time']
-        date = request.POST['date']
-
-        # Check if the time slot is already taken
-        if Reservation.objects.filter(date=date, time=time).exists():
-            messages.error(request, 'L\'heure est déjà prise, veuillez réserver sous une autre heure ou une autre date.')
-            return redirect('reservation_page')  # Assurez-vous que cette vue renvoie à votre page de réservation
-
-        # Create new reservation
         try:
-            Reservation.objects.create(name=name, phone=phone, date=date, time=time)
-            messages.success(request, f'Réservation effectuée à {time} le {date}.')
-        except Exception as e:
-            messages.error(request, 'Échec de la réservation.')
-            return redirect('reservation_page')
+            data = json.loads(request.body.decode('utf-8'))
+            name = data['name']
+            phone = data['phone']
+            date = data['date']
+            time = data['time']
 
+            # Check if the time slot is already taken
+            if Reservation.objects.filter(date=date, time=time).exists():
+                return JsonResponse({'status': 'error', 'message': 'L\'heure est déjà prise, veuillez réserver sous une autre heure ou une autre date.'})
+
+            # Create new reservation
+            try:
+                Reservation.objects.create(name=name, phone=phone, date=date, time=time)
+                return JsonResponse({'status': 'success', 'message': f'Réservation effectuée à {time} le {date}.'})
+            except Exception as e:
+                return JsonResponse({'status': 'error', 'message': 'Échec de la réservation.'})
+
+        except json.JSONDecodeError as e:
+            return JsonResponse({'status': 'error', 'message': 'Données JSON invalides.'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': 'Une erreur inattendue s\'est produite.'})
 
     return JsonResponse({'status': 'error', 'message': 'Méthode non autorisée.'})
 
@@ -58,3 +62,35 @@ def delete_reservation(request, reservation_id):
     reservation = get_object_or_404(Reservation, id=reservation_id)
     reservation.delete()
     return redirect('reservations_list')
+
+def coiffure(request):
+	return render(request, 'dashboard/Coiffures.html')
+
+def maquillage(request):
+	return render(request, 'dashboard/maquillage.html')
+
+def manicure(request):
+	return render(request, 'dashboard/manicure.html')
+
+def pedicure(request):
+	return render(request, 'dashboard/pédicure.html')
+
+
+
+
+
+def update_status(request, reservation_id, status):
+    reservation = Reservation.objects.get(id=reservation_id)
+    if status in ['Confirmé', 'Annulé']:
+        reservation.status = status
+        reservation.save()
+    return redirect('reservations_list')
+
+
+def confirmed_reservations(request):
+    reservation_list = Reservation.objects.filter(status='Confirmé')
+    paginator = Paginator(reservation_list, 10)  # 10 réservations par page
+
+    page_number = request.GET.get('page')
+    reservations = paginator.get_page(page_number)
+    return render(request, 'adminnistrateur/confirmed_reservations.html', {'reservations': reservations})

@@ -5,16 +5,24 @@ new Vue({
         phone: '',
         date: '',
         time: '',
-        message: ''
+        message: '',
+        messageType: ''  // Propriété pour le type de message (succès ou erreur)
     },
     methods: {
         async submitReservation() {
+            // Validation de l'heure (optionnel)
+            if (!this.isTimeValid(this.time)) {
+                this.message = 'Veuillez choisir une heure entre 9h et 20h.';
+                this.messageType = 'error';
+                return;
+            }
+
             try {
                 const response = await fetch('/api/reserve', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-CSRFToken': getCookie('csrftoken')  // Add CSRF token for Django
+                        'X-CSRFToken': getCookie('csrftoken')  // Ajout du token CSRF pour Django
                     },
                     body: JSON.stringify({
                         name: this.name,
@@ -23,15 +31,20 @@ new Vue({
                         time: this.time
                     })
                 });
+
                 const result = await response.json();
-                if (result.status === 'success') {
-                    this.message = result.message;
-                } else {
-                    this.message = result.message;
-                }
+                this.message = result.message;
+                this.messageType = result.status;  // 'success' ou 'error'
             } catch (error) {
+                console.error('Error:', error);
                 this.message = 'Erreur lors de la réservation. Veuillez réessayer.';
+                this.messageType = 'error';
             }
+        },
+        isTimeValid(time) {
+            // Validation de l'heure
+            const hour = parseInt(time.split(':')[0], 10);
+            return hour >= 9 && hour <= 20;
         }
     }
 });

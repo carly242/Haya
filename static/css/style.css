@@ -443,6 +443,7 @@ h5 {
   overflow: hidden;
   transition: transform 0.5s;
   display: block;
+  color: #e7e5e2;
 }
 
 .pseudo-text-effect::after {
@@ -452,7 +453,7 @@ h5 {
   position: absolute;
   left: 0;
   transition: inherit;
-  color: var(--bs-dark);
+  color: #e7e5e2;
 }
 
 .pseudo-text-effect>span {
@@ -722,38 +723,7 @@ h5 {
 
 /* - Search Bar
 ------------------------------------------------------------- */
-.search-box {
-  background: var(--bs-light);
-  height: 0px;
-  transition: height 0.3s ease-out;
-}
 
-.search-box.active {
-  height: 90px;
-}
-
-.close-button {
-  top: 20px;
-  right: 120px;
-  cursor: pointer;
-  z-index: 9;
-}
-
-.search-box input.search-input {
-  width: 50%;
-  height: 30px;
-  min-width: 420px;
-  border-radius: 80px;
-  border-color: rgb(0 0 0 / 25%);
-}
-
-.search-box .search-wrap svg {
-  color: var(--bs-primary);
-}
-
-.search-box svg.search {
-  margin-left: -50px;
-}
 
 /* - Sticky
 ------------------------------------------------------------- */
@@ -913,7 +883,7 @@ h5 {
   left: 0;
   right: 0;
   border-radius: 50px;
-  border: 1px solid #4a4a4a;
+  border: 1px solid #eb82f3;
   transform: scale(1);
   transition: transform 0.3s ease-out;
 }
