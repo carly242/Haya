@@ -293,7 +293,7 @@ def contact(request):
             subject=f"Message de {name} via le formulaire de contact du site",
             message=message,
             from_email=email,
-            recipient_list=['carlybivihou8@gmail.com'],  # Remplacez par votre adresse e-mail
+            recipient_list=['hayabeauty@gmail.com'],  # Remplacez par votre adresse e-mail
             fail_silently=False,
         )
 
