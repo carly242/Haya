@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -211,8 +212,8 @@ SOCIALACCOUNT_PROVIDERS = {
         'OAUTH_PKCE_ENABLED': True,
         # Assurez-vous que vos clés client et secret sont définies
         'APP': {
-            'client_id': '355714709164-4ad8e61dtskju0ke1ostvs4qh26s4d60.apps.googleusercontent.com',
-            'secret': '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',
+            'client_id': config('GOOGLE_OAUTH_CLIENT_ID'),
+            'secret': config('GOOGLE_OAUTH_CLIENT_SECRET'),
             'key': ''
         }
     }
