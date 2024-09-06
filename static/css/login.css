@@ -1,0 +1,76 @@
+* {
+    font-family: "Google Sans", "Noto Sans Myanmar UI", arial, sans-serif;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #f2f2f2;
+}
+.main {
+    margin-top: 5%;
+}
+.main .card {
+    display: flex;
+    border: 1px solid #DADCE0;
+    padding: 40px;
+    width: 550px; /* Augmenter la largeur de la carte */
+    height: auto;
+    flex-direction: column;
+    border-radius: 7px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    align-items: center;
+    text-align: center;
+}
+.card-header {
+    margin-bottom: 20px;
+}
+.card-header .login-title {
+    margin-top: 15px;
+    font-weight: 400;
+    font-size: 24px;
+    color: #202124;
+}
+.card-header .login-subtitle {
+    font-family: Roboto, sans-serif;
+    letter-spacing: 0.1px;
+    line-height: 24px;
+    font-size: 16px;
+    color: #202124;
+    margin-top: 10px;
+}
+.card-footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.card-footer .google-login-button {
+    display: block;
+    text-align: center;
+    outline: 0;
+    padding: 0.6em 24px;
+    font-size: 14px;
+    font-family: "Google Sans", sans-serif;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    font-weight: 300;
+    cursor: pointer;
+    background-color: rgb(26, 115, 232);
+    transition: box-shadow 0.3s;
+    text-decoration: none;
+}
+.card-footer .google-login-button:hover {
+    filter: brightness(90%);
+    box-shadow: 0px 1px 1px rgb(173, 172, 172);
+}
+@media screen and (max-width: 640px) {
+    .main .card {
+        width: 350px;
+    }
+}

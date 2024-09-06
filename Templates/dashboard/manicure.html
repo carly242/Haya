@@ -100,7 +100,15 @@
       .btn-full:hover {
         background-color: #787d62;
       }
-      
+
+      .text-white {
+        color: #fff !important; /* Texte blanc */
+      }
+      .footer {
+        background-color: #f1f1f1;
+        padding: 20px;
+        text-align: center;
+    }
     
     @media (max-width: 768px) {
         .header-coiffures h1 {
@@ -152,8 +160,10 @@
                       <a href="single-product.html" class="text-primary"></a>
                     </h3>
                     <div class="cart-info">
-                      <a class="pseudo-text-effect" href="{% url 'reservation_page' %}" data-after="Reserver"><span>Prix</span></a>
-                    </div>
+                      <span class="pseudo-text-effect text-white">
+                        <a href="{% url 'reservation_page' %}" class="text-white">Reserver</a>
+                    </span>                    
+                  </div>
                   </div>
                 </div>
               </div>
@@ -167,9 +177,9 @@
                       <a href="single-product.html" class="text-primary"></a>
                     </h3>
                     <div class="cart-info">
-                      <a class="pseudo-text-effect" href="{% url 'reservation_page' %}" data-after="Reserver">
-                        <span>Prix</span>
-                      </a>
+                      <span class="pseudo-text-effect text-white">
+                        <a href="{% url 'reservation_page' %}" class="text-white">Reserver</a>
+                    </span>
                     </div>
                   </div>
                 </div>
@@ -184,60 +194,28 @@
                       <a href="single-product.html" class="text-primary"></a>
                     </h3>
                     <div class="cart-info">
-                      <a class="pseudo-text-effect" href="{% url 'reservation_page' %}" data-after="Reserver">
-                        <span>Prix</span>
-                      </a>
+                      <span class="pseudo-text-effect text-white">
+                        <a href="{% url 'reservation_page' %}" class="text-white">Reserver</a>
+                    </span>
                     </div>
                   </div>
                 </div>
               </div>
+              
+
               <div class="swiper-slide">
                 <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
                   <div class="image-holder">
-                    <img src="{% static 'images/jolie_mèche.jpg' %}" alt="product-item" class="product-image img-fluid" style="height: 480px;">
+                    <img src="{% static 'images/mazaka.jpeg' %}" alt="product-item" class="product-image img-fluid" style="height: 480px;">
                   </div>
                   <div class="cart-concern">
                     <h3 class="card-title text-uppercase pt-3 text-primary">
                       <a href="single-product.html" class="text-primary"></a>
                     </h3>
                     <div class="cart-info">
-                      <a class="pseudo-text-effect" href="{% url 'reservation_page' %}" data-after="Reserver">
-                        <span>Prix</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                  <div class="image-holder">
-                    <img src="{% static 'images/gros_bb.jpg' %}" alt="product-item" class="product-image img-fluid" style="height: 480px;">
-                  </div>
-                  <div class="cart-concern">
-                    <h3 class="card-title text-uppercase pt-3 text-primary">
-                      <a href="single-product.html" class="text-primary"></a>
-                    </h3>
-                    <div class="cart-info">
-                      <a class="pseudo-text-effect" href="{% url 'reservation_page' %}" data-after="Reserver">
-                        <span>Prix</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
-                  <div class="image-holder">
-                    <img src="{% static 'images/natt.jpg' %}" alt="product-item" class="product-image img-fluid" style="height: 480px;">
-                  </div>
-                  <div class="cart-concern">
-                    <h3 class="card-title text-uppercase pt-3 text-primary">
-                      <a href="single-product.html" class="text-primary"></a>
-                    </h3>
-                    <div class="cart-info">
-                      <a class="pseudo-text-effect" href="{% url 'reservation_page' %}" data-after="Faire une reservation">
-                        <span>Prix</span>
-                      </a>
+                      <span class="pseudo-text-effect text-white">
+                        <a href="{% url 'reservation_page' %}" class="text-white">Reserver</a>
+                    </span>
                     </div>
                   </div>
                 </div>
@@ -284,7 +262,9 @@
   </section>
   
 
-
+  <div class="footer">
+    &copy; 2024 All rights deserve by @mym
+  </div>
 
 
 {% endblock %}

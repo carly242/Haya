@@ -1,0 +1,74 @@
+<!-- templates/admin_profile.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Points de Fidélité</title>
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="{% url 'home' %}">Accueil</a></li>
+            <li><a href="{% url 'reservations_list' %}">Réservations</a></li>
+            <li><a href="{% url 'clients' %}">Contact</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="container">
+            <h2>Gestion des Points de Fidélité</h2>
+            <table class="reservations-table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Téléphone</th>
+                        <th>Points de Fidélité</th>
+                        <th>Mettre à Jour</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for profile in profiles %}
+                        <tr>
+                            <td>{{ profile.user.username }}</td>
+                            <td>{{ profile.phone }}</td>
+                            <td>{{ profile.loyalty_points }}</td>
+                            <td>
+                                <form action="{% url 'update_loyalty_points' profile.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="number" name="loyalty_points" value="{{ profile.loyalty_points }}" min="0" required>
+                                    <button type="submit" class="btn btn-primary">Mettre à Jour</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="4">Aucun profil trouvé.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if profiles.has_previous %}
+                        <a href="?page=1">&laquo; Première</a>
+                        <a href="?page={{ profiles.previous_page_number }}">Précédent</a>
+                    {% endif %}
+                    <span class="current">
+                        Page {{ profiles.number }} sur {{ profiles.paginator.num_pages }}.
+                    </span>
+                    {% if profiles.has_next %}
+                        <a href="?page={{ profiles.next_page_number }}">Suivant</a>
+                        <a href="?page={{ profiles.paginator.num_pages }}">Dernière &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

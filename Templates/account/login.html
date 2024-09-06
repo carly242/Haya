@@ -1,0 +1,58 @@
+{% load static %}
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Connexion - comptes Google</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Google Sans">
+        <script src="//accounts.google.com/gsi/client" async></script>
+        <script>
+            function handleCredentialResponse(response) {
+                // Send the token to your backend for verification
+                // Example: POST /google/login
+                fetch('/accounts/google/login/callback/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'id_token=' + response.credential,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response data, e.g., redirect or show a success message
+                    window.location.href = '/profile/';
+                });
+            }
+
+            window.onload = function () {
+                google.accounts.id.initialize({
+                    client_id: '355714709164-hdeaqjfpvcjgej384ng43iflivpctjac.apps.googleusercontent.com',
+                    callback: handleCredentialResponse
+                });
+                google.accounts.id.renderButton(
+                    document.getElementById('g_id_button'),
+                    { theme: 'outline', size: 'large' }  // Customize the button style
+                );
+            }
+        </script>
+    </head>
+    <body>
+        <div class="main">
+            <div class="card">
+                <div class="card-header">
+                    <img src="https://www.google.fr/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png" width="70">
+                    <span class="login-title">Connexion</span>
+                    <span class="login-subtitle">Utiliser votre compte Google</span>
+                </div>
+                <div class="card-footer">
+                    <button><a href="{% url 'google-login-redirect' %}" class="google-login-button">Connexion avec Google</a></button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

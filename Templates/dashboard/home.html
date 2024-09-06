@@ -60,7 +60,7 @@
 .mosaic-item a {
     color: #fff;
     text-decoration: none;
-    background: #000;
+    background: #df24f4;
     padding: 5px 10px;
     display: inline-block;
     margin-top: 10px;
@@ -97,8 +97,7 @@
                   <div class="row">
                       <div class="col-md-12">
                           <div class="banner-content padding-large">
-                              <h2 class="display-1 text-uppercase text-white pb-2">Haya Beauty</h2>
-                              <p class="text-white">Bienvenue chez Haya Beauty, votre destination de confiance pour une expérience de beauté exceptionnelle. Nous offrons des services de coiffure, de soins de la peau et de bien-être dans un cadre élégant et relaxant. Laissez notre équipe de professionnels expérimentés sublimer votre beauté naturelle avec des soins personnalisés adaptés à vos besoins.</p>
+                              <p class="text-white">Bienvenue chez Haya Beauty, votre espace de bien etre pour une expérience exceptionnelle. Nous offrons des services de coiffure, beauté des mains et des pieds dans un cadre relaxant et convivial. Faites confiance à notre équipe de prpofessionnels expérimentés pour vous sublimer.</p>
                           </div>
                       </div>
                   </div>
@@ -134,7 +133,7 @@
                   <li>Coiffure</li>
                 </ul>
               </p>
-              <p class="text-white">N'hésitez plus et prenez <a href="{% url 'reservation_page' %}" class="text-white"> Rendez-Vous</a> </p>
+              <p class="text-white"><a href="{% url 'reservation_page' %}" class="text-white"> Rendez-Vous</a> </p>
             </div>
           </div>
         </div>
@@ -150,35 +149,35 @@
             <h2 class="display-2 text-uppercase text-dark pb-2 text-white">Nos Prestations</h2>
             <div class="mosaic-grid">
                 <div class="mosaic-item">
-                    <img src="{% static 'images/Ba_coiffures.jpg' %}" alt="Coiffures">
+                    <img src="{% static 'images/coiffure_dos.jpeg' %}" alt="Coiffures">
                     <div class="overlay">
                         <h3>Coiffure</h3>
-                        <p>Venez vous faire belle chez Haya Beauty</p>
-                        <a href="{% url 'coiffure' %}" class="btn btn-normal mt-3">Voir Plus</a>
+                        <p></p>
+                        <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
                     </div>
                 </div>
                 <div class="mosaic-item">
-                    <img src="{% static 'images/maquillage.jpg' %}" alt="Maquillage">
+                    <img src="{% static 'images/oeil.jpeg' %}" alt="Maquillage">
                     <div class="overlay">
                         <h3>Maquillage</h3>
-                        <p>Venez bénéficier d'un maquillage professionnel et attractif pour vous embellir</p>
-                        <a href="{% url 'maquillage' %}" class="btn btn-normal mt-3">Voir Plus</a>
+                        <p></p>
+                        <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
                     </div>
                 </div>
                 <div class="mosaic-item">
                     <img src="{% static 'images/Manicure.jpeg' %}" alt="Manicure">
                     <div class="overlay">
                         <h3>Manicure</h3>
-                        <p>Découvrez la délicatesse de nos experts qui peuvent faire des miracles</p>
-                        <a href="{% url 'manicure' %}" class="btn btn-normal mt-3">Voir Plus</a>
+                        <p></p>
+                        <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
                     </div>
                 </div>
                 <div class="mosaic-item">
                     <img src="{% static 'images/Pédicure_H.jpeg' %}" alt="Pédicure">
                     <div class="overlay">
                         <h3>Pédicure</h3>
-                        <p>Venez rendre vos pieds brillants et attractifs chez Haya Beauty avec nos experts</p>
-                        <a href="{% url 'pedicure' %}" class="btn btn-normal mt-3">Voir Plus</a>
+                        <p></p>
+                        <a href="{% url 'reservation_page' %}" class="btn btn-normal mt-3">Reserver</a>
                     </div>
                 </div>
                 <!-- Additional items... -->
@@ -228,12 +227,43 @@
   </section>
   
 
+<script>
+  $(document).ready(function() {
+    $('#contact-form').on('submit', function(e) {
+      e.preventDefault();
+
+      $.ajax({
+        url: '{% url "contact" %}',  // Assurez-vous que l'URL est correcte
+        type: 'POST',
+        data: {
+          name: $('input[name="name"]').val(),
+          email: $('input[name="email"]').val(),
+          message: $('textarea[name="message"]').val(),
+          csrfmiddlewaretoken: '{{ csrf_token }}'  // Inclure le token CSRF
+        },
+        success: function(response) {
+          if (response.success) {
+            alert(response.message);  // Message de confirmation
+            $('#contact-form')[0].reset();  // Réinitialiser le formulaire
+          } else {
+            alert('Erreur lors de l\'envoi du message.');
+          }
+        },
+        error: function() {
+          alert('Une erreur s\'est produite. Veuillez réessayer plus tard.');
+        }
+      });
+    });
+  });
+</script>
+
+
 
 <style>
 
     .contact {
         padding: 4em 0;
-        background-color: #f6f5f2;
+        background-color: #020202;
       }
       
       .map-container {
@@ -338,7 +368,7 @@
 
 
 <div class="footer">
-  &copy; 2024 All rights deserve by. Créé par @mym
+  &copy; 2024 All rights deserve by @HayaBeatyea
 </div>
 
 

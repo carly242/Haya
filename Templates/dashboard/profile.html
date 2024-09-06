@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Client</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <script src="{% static 'js/profile.js' %}" defer></script>
+</head>
+<body>
+    <header>
+        
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Accueil</a></li>
+                <li><a href="{% url 'profile' %}">Mon Profil</a></li>
+                <li><a href="">Mes Réservations</a></li>
+                <li><a href="">Déconnexion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="profile-info card">
+            <h2>Informations sur le compte</h2>
+            <div class="profile-details">
+                <p><strong>Nom :</strong> {{ user.first_name }} {{ user.last_name }}</p>
+                <p><strong>Email :</strong> {{ user.email }}</p>
+                <p><strong>Numéro de téléphone :</strong> {{ user.profile.phone }}</p>
+            </div>
+            <button id="edit-profile-btn">Modifier</button>
+        </section>
+        
+
+        <section class="loyalty-points card">
+            <h2>Points de fidélité</h2>
+            <p>Vous avez <strong>{{ user.profile.loyalty_points }}</strong> points de fidélité.</p>
+        </section>
+
+        <section class="reservations card">
+            <div class="header">
+                <h2>Mes Réservations</h2>
+                <a href="{% url 'reservation_page' %}">
+                    <button id="make-reservation-btn">Faire une réservation</button>
+                </a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Heure</th>
+                        <th>Statut</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reservation in reservations %}
+                        <tr>
+                            <td>{{ reservation.date }}</td>
+                            <td>{{ reservation.time }}</td>
+                            <td>{{ reservation.get_status_display }}</td>
+
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="4">Aucune réservation trouvée.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>        
+    </main>
+
+    <!-- Modale pour afficher les détails de réservation -->
+    <div id="reservation-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Détails de la Réservation</h2>
+            <div id="reservation-details"></div>
+        </div>
+    </div>
+
+    <!-- Modale pour éditer le profil -->
+    <div id="edit-profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Modifier les Informations</h2>
+            <form id="edit-profile-form" method="post">
+                {% csrf_token %}
+                <label for="phone">Numéro de téléphone :</label>
+                <input type="text" id="phone" name="phone" value="{{ user.profile.phone }}">
+                <button type="submit">Sauvegarder</button>
+            </form>
+        </div>
+    </div>
+
+    
+</body>
+</html>

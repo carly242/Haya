@@ -28,7 +28,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'w.01infocontact@gmail.com'
+EMAIL_HOST_PASSWORD = 'lovw aota twwj asxx'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'w.01infocontact@gmail.com'
+
+SESSION_COOKIE_SECURE = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,7 +48,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myapp'
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'debug_toolbar',
+    'myapp.apps.MyappConfig',  # Assurez-vous que c'est bien cette ligne
+   
 ]
 
 MIDDLEWARE = [
@@ -49,8 +66,24 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',  # Middleware de débogage
+
     
 ]
+
+
+
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
+
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,
+}
+
+
 
 ROOT_URLCONF = 'haya.urls'
 
@@ -67,6 +100,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
+
             ],
         },
     },
@@ -148,3 +183,53 @@ TIME_ZONE = 'Europe/Paris'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',  # Permet l'authentification Django normale
+    'allauth.account.auth_backends.AuthenticationBackend',  # Permet l'authentification via allauth
+)
+
+SITE_ID = 2
+
+LOGIN_URL = '/accounts/login/'  # URL de redirection pour les utilisateurs non connectés
+
+LOGIN_REDIRECT_URL = '/'
+
+
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'offline',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+        # Assurez-vous que vos clés client et secret sont définies
+        'APP': {
+            'client_id': '355714709164-4ad8e61dtskju0ke1ostvs4qh26s4d60.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        }
+    }
+}
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}
