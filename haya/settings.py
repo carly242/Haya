@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'debug_toolbar',
     'myapp.apps.MyappConfig',  # Assurez-vous que c'est bien cette ligne
    
 ]
@@ -67,7 +66,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',  # Middleware de débogage
 
     
 ]
@@ -75,9 +73,6 @@ MIDDLEWARE = [
 
 
 
-INTERNAL_IPS = [
-    '127.0.0.1',
-]
 
 DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,
