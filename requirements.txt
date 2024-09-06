@@ -4,3 +4,4 @@ gunicorn==22.0.0
 pillow==10.3.0
 whitenoise==6.6.0
 decouple==0.0.7
+django-allauth==64.0.0
